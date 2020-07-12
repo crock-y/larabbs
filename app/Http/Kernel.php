@@ -45,9 +45,9 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            AcceptHeader::class,
             'throttle:60,1',
             'bindings',
-            AcceptHeader::class
         ],
     ];
 
