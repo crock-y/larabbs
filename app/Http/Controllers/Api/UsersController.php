@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\UserRequest;
+use App\Http\Requests\Request;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Auth\AuthenticationException;
@@ -32,5 +33,14 @@ class UsersController extends Controller
         \Cache::forget($request->verification_key);
 
         return new UserResource($user);
+    }
+    public function show(User $user)
+    {
+        return new UserResource($user);
+    }
+
+    public function me(Request $request)
+    {
+        return (new UserResource($request->user()))->showSensitiveFields();
     }
 }
